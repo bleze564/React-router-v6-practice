@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 import Home from "./pages/Home";
 import Movies from "./pages/Movies";
@@ -14,9 +12,10 @@ function App() {
       </header>
 
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/home/current" element={<h1>Current Home</h1>} />
         <Route path="/movies" element={<Movies />} />
-  
       </Routes>
     </BrowserRouter>
   );
