@@ -1,13 +1,38 @@
-const API_KEY = "3a34dffb9a5abf5c0a1fa6a215bc83f1";
+const TOKEN =
+  "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYTM0ZGZmYjlhNWFiZjVjMGExZmE2YTIxNWJjODNmMSIsIm5iZiI6MTc4MTE5NzIxMi4zMDU5OTk4LCJzdWIiOiI2YTJhZTk5Y2NhYTNkZGVhMjRhMTU4ODMiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.CLQsMIYNAvBedvb0usCp8XgvqAInLxeUZPu9Tefc0QU";
+
+const options = {
+  headers: {
+    Authorization: `Bearer ${TOKEN}`,
+  },
+};
 
 export async function getTrendingMovies() {
   const response = await fetch(
-    `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`
+    "https://api.themoviedb.org/3/trending/movie/day",
+    options,
   );
+  return response.json();
+}
 
-  if (!response.ok) {
-    throw new Error("Failed to load movies");
-  }
-
+export async function getMovieById(id) {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/movie/${id}`,
+    options,
+  );
+  return response.json();
+}
+export async function getMovieCast(id) {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/movie/${id}/credits`,
+    options,
+  );
+  return response.json();
+}
+export async function getMovieReviews(id) {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/movie/${id}/reviews`,
+    options,
+  );
   return response.json();
 }
